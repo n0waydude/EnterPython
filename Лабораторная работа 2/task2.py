@@ -35,14 +35,14 @@ class Library:
         if not self.books:
             index = 1
         else:
-            index = len(self.books) + 1
+            index = self.books[-1].id + 1
         return index
 
     def get_index_by_book_id(self, id_to_find: int) -> int:
-        if id_to_find-1 in range(len(self.books)):
-            return id_to_find-1
-        else:
-            raise ValueError("Книги с запрашиваемым id не существует")
+        for index, book in enumerate(self.books):
+            if book.id == id_to_find:
+                return index
+        raise ValueError("Книги с запрашиваемым id не существует")
 
 
 if __name__ == '__main__':
